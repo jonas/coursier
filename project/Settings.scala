@@ -180,6 +180,8 @@ object Settings {
 
   lazy val scripted100M6Workaround = {
 
+    // still needed with sbt 1.0.0-RC2?
+
     // see https://github.com/sbt/sbt/issues/3245#issuecomment-306045952
 
     ScriptedPlugin.scripted := Def.inputTask {
@@ -203,7 +205,7 @@ object Settings {
       val sbtv = sbtVersion.in(pluginCrossBuild).value
 
       try {
-        if(sbtv == "1.0.0-M6")
+        if(sbtv == "1.0.0-RC2")
           scriptedTests.asInstanceOf[{
             def run(
               x1: File,
@@ -279,7 +281,7 @@ object Settings {
       sbtVersion := {
         scalaBinaryVersion.value match {
           case "2.10" => "0.13.8"
-          case "2.12" => "1.0.0-M6"
+          case "2.12" => "1.0.0-RC2"
           case _ => sbtVersion.value
         }
       },
